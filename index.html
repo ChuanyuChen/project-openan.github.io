@@ -453,7 +453,6 @@
     border-left: 1px solid var(--border);
     display: grid;
     place-items: center;
-    padding: 48px;
     min-height: 480px;
   }
 
@@ -1190,64 +1189,7 @@
       </div>
 
       <div class="arch-visual">
-        <svg viewBox="0 0 520 500" style="width:100%;height:100%;">
-          <defs>
-            <linearGradient id="layerG" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#1aa8e2" stop-opacity="0.18"/>
-              <stop offset="100%" stop-color="#4fc3f7" stop-opacity="0.10"/>
-            </linearGradient>
-            <linearGradient id="coreG" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#1aa8e2" stop-opacity="0.28"/>
-              <stop offset="100%" stop-color="#00bcd4" stop-opacity="0.18"/>
-            </linearGradient>
-          </defs>
-
-          <g font-family="Geist Mono, monospace" font-size="10" fill="#8c97b3" letter-spacing="0.1em">
-            <!-- Service Layer -->
-            <rect x="60" y="50" width="390" height="60" fill="url(#layerG)" stroke="#1aa8e2" stroke-opacity="0.45" rx="6"/>
-            <text x="80" y="74" fill="#eef3fb" font-size="12">SERVICE LAYER</text>
-            <text x="80" y="92">OSS copilots . optimization . fault agents</text>
-
-            <!-- Orchestration Center -->
-            <rect x="60" y="130" width="188" height="56" fill="url(#coreG)" stroke="#1aa8e2" stroke-opacity="0.55" rx="6"/>
-            <text x="80" y="150" fill="#eef3fb" font-size="12">ORCHESTRATION</text>
-            <text x="80" y="166" font-size="9">workflows . canvas</text>
-            <text x="80" y="178" font-size="9">refinement</text>
-
-            <!-- Registry Center -->
-            <rect x="260" y="130" width="190" height="56" fill="url(#coreG)" stroke="#1aa8e2" stroke-opacity="0.55" rx="6"/>
-            <text x="278" y="150" fill="#eef3fb" font-size="12">REGISTRY</text>
-            <text x="278" y="166" font-size="9">agent cards . skills</text>
-            <text x="278" y="178" font-size="9">retrieval</text>
-
-            <!-- A2A-T SDK -->
-            <rect x="60" y="206" width="390" height="56" fill="url(#coreG)" stroke="#00bcd4" stroke-opacity="0.6" rx="6"/>
-            <text x="80" y="228" fill="#eef3fb" font-size="12">A2A-T SDK</text>
-            <text x="80" y="246" font-size="9">task-t . notification-t . negotiation-t . authorization-t</text>
-
-            <!-- Telecom skills -->
-            <rect x="60" y="282" width="390" height="56" fill="url(#layerG)" stroke="#1aa8e2" stroke-opacity="0.4" rx="6"/>
-            <text x="80" y="304" fill="#eef3fb" font-size="11">TELECOM SKILLS &amp; COMPONENT LIBRARY</text>
-            <text x="80" y="322" font-size="9">rag . memory . runtime engine</text>
-
-            <!-- Network Layer -->
-            <rect x="60" y="358" width="390" height="62" fill="url(#layerG)" stroke="#1aa8e2" stroke-opacity="0.4" rx="6"/>
-            <text x="80" y="382" fill="#eef3fb" font-size="12">NETWORK LAYER</text>
-            <text x="80" y="400">ran . fixed access . ip . core</text>
-            <text x="80" y="414" font-size="9">intelligent network infrastructure</text>
-          </g>
-
-          <!-- Connecting arrows -->
-          <g stroke="#1aa8e2" stroke-opacity="0.4" stroke-width="1" fill="none" stroke-dasharray="4 4">
-            <path d="M255 110 L255 130"/>
-            <path d="M154 186 L154 206"/>
-            <path d="M355 186 L355 206"/>
-            <path d="M255 262 L255 282"/>
-            <path d="M255 338 L255 358"/>
-          </g>
-
-          <text x="472" y="240" font-family="Geist Mono, monospace" font-size="9" fill="#5a648a" letter-spacing="0.15em" text-anchor="end" transform="rotate(-90 472 240)">OPENAN SCOPE</text>
-        </svg>
+        <img src="src/images/openan-arch.png" alt="OpenAN Architecture Diagram" style="max-width:100%;height:auto;">
       </div>
     </div>
   </div>
