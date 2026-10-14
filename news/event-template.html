@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- TODO(1/6): page title — plain text, no markup. Format: "News — <headline> | OpenAN" -->
+<title>News — EVENT HEADLINE | OpenAN</title>
+<!-- TODO(2/6): one-sentence meta description for search engines -->
+<meta name="description" content="One-sentence summary of this event invitation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="../src/images/openan-logo.png">
+<link rel="stylesheet" href="../components/navbar.css">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* ============================================================
+     EVENT INVITATION THEME (ADR-016)
+     Warmer, green-accented look that deliberately differs from
+     standard news pages. Palette derives from the "event"
+     category pill (#34d399). All rules are page-scoped and ship
+     inside this template, so copying the file copies the theme.
+     ============================================================ */
+  :root {
+    --event: #34d399;
+    --event-2: #6ee7b7;
+    --event-deep: #059669;
+  }
+
+  /* Green gradient headline emphasis (overrides styles.css blue) */
+  .page-head h1 em {
+    background: linear-gradient(120deg, var(--event-deep), var(--event), var(--event-2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Green section markers (overrides styles.css blue ▸) */
+  .section h2::before { color: var(--event); }
+
+  /* Green list markers to match the theme */
+  .section ul li::marker { color: var(--event); }
+
+  /* Banner image at natural size/aspect ratio — no forced crop;
+     scales down only if wider than the column */
+  .event-banner {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto 20px;
+    border-radius: 14px;
+    border: 1px solid rgba(52,211,153,0.25);
+    box-shadow: 0 24px 60px -30px rgba(52,211,153,0.45);
+  }
+
+  /* Event facts: date / location / audience cards */
+  .event-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    margin: 18px 0;
+  }
+  .event-info {
+    background: rgba(52,211,153,0.07);
+    border: 1px solid rgba(52,211,153,0.18);
+    border-radius: 10px;
+    padding: 18px 20px;
+  }
+  .event-info .label {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    color: var(--event-2);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .event-info .value {
+    font-family: var(--display);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.01em;
+    line-height: 1.35;
+  }
+
+  /* Primary call-to-action button */
+  .event-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 18px;
+    padding: 13px 26px;
+    border-radius: 999px;
+    background: linear-gradient(120deg, var(--event-deep), var(--event));
+    color: #04120c !important;
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: -0.01em;
+    text-decoration: none !important;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .event-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 34px -14px rgba(52,211,153,0.6);
+  }
+  .event-cta svg { display: block; }
+
+  /* Comment callout: green highlight variant of .highlight */
+  .comment-box {
+    background: rgba(52,211,153,0.08);
+    border: 1px solid rgba(52,211,153,0.2);
+    border-radius: 10px;
+    padding: 20px 22px;
+    margin-top: 14px;
+  }
+  .comment-box p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.65;
+    margin-bottom: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .event-cta, .event-cta:hover { transition: none; transform: none; }
+  }
+</style>
+</head>
+<body>
+<!-- NAVBAR COMPONENT — injected from components/navbar.html by components/navbar.js -->
+<div id="navbar" data-active="news">
+  <noscript>
+    <div class="container" style="display:flex; align-items:center; gap:18px; flex-wrap:wrap; padding-top:14px; padding-bottom:14px; font-size:0.9rem;">
+      <a href="../index.html" style="font-weight:600;">OpenAN</a>
+      <a href="../index.html#about">About</a>
+      <a href="../best-practices.html">Best Practices</a>
+      <a href="../architecture.html">Architecture</a>
+      <a href="../index.html#roadmap">Roadmap</a>
+      <a href="../index.html#community">Community</a>
+      <a href="../governance.html">Governance</a>
+      <a href="../news.html">News</a>
+    </div>
+  </noscript>
+</div>
+
+<div class="page">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="../index.html">Home</a>
+    <span class="breadcrumb-sep" aria-hidden="true">/</span>
+    <a href="../news.html">News</a>
+    <span class="breadcrumb-sep" aria-hidden="true">/</span>
+    <!-- TODO(3/6): current page title, plain text (must match the h1 below) -->
+    <span class="breadcrumb-current" aria-current="page">EVENT HEADLINE</span>
+  </nav>
+
+  <div class="page-head">
+    <!-- Headline. Wrap the event name in <em> for the green gradient emphasis. -->
+    <h1>EVENT HEADLINE <em>emphasis</em></h1>
+    <!-- Meta line: fixed prefix "Event", then PUBLISH date (Month DD, YYYY) and author.
+         The event date itself goes in the .event-info grid below, not here. -->
+    <p class="subtitle">Event &middot; Month DD, YYYY &middot; by OpenAN</p>
+    <!-- Category pill is always "event" here; add tags as needed. -->
+    <div class="news-pills">
+      <span class="category-pill event">Event</span>
+      <span class="news-tag">Tag One</span>
+      <span class="news-tag">Tag Two</span>
+    </div>
+  </div>
+
+  <!-- TODO(4/6): banner image — put the file in src/images/news/contents/
+       (parallel to src/images/news/covers/, which holds the card covers) and
+       reference it from here as ../src/images/news/contents/FILE.png. It is
+       shown at natural size (no crop). The card cover in ../news.html
+       references src/images/news/covers/FILE.png. -->
+  <img class="event-banner" src="../src/images/news/contents/FILE.png" alt="Short description of the event visual">
+
+  <!-- TODO(5/6): body content — three sections: Intro / Invitation / Comment. -->
+  <div class="section">
+    <h2>Intro</h2>
+    <p>Warm one-paragraph introduction: what the event is, where it sits (co-located conference, etc.), and why it matters to the community.</p>
+  </div>
+
+  <div class="section">
+    <h2>Invitation</h2>
+    <p>Enthusiastic invitation copy — who is welcome and what to expect.</p>
+    <div class="event-info-grid">
+      <div class="event-info">
+        <div class="label">Date</div>
+        <div class="value">Event Date</div>
+      </div>
+      <div class="event-info">
+        <div class="label">Location</div>
+        <div class="value">Venue / City</div>
+      </div>
+      <div class="event-info">
+        <div class="label">Audience</div>
+        <div class="value">Who should join</div>
+      </div>
+    </div>
+    <p>Optional closing line with an <a href="https://example.com" target="_blank" rel="noopener">external link</a> (e.g. host conference site).</p>
+  </div>
+
+  <div class="section">
+    <h2>Comment</h2>
+    <p>Invite readers to leave comments, questions, or agenda proposals.</p>
+    <div class="comment-box">
+      <p>We'd love to hear from you — drop your comments and topics on the meeting wiki page.</p>
+      <!-- TODO(6/6): comment link (wiki / mailing list / issue tracker) -->
+      <a class="event-cta" href="https://example.com" target="_blank" rel="noopener">
+        Leave a Comment
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- After saving this page, insert the card at the TOP of the list in
+       ../news.html with <span class="category-pill event">Event</span>. -->
+</div>
+
+<script src="../components/navbar.js"></script>
+</body>
+</html>
