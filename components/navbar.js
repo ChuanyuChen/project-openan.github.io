@@ -84,6 +84,33 @@
           }
         });
       }
+
+      // 3. Mobile menu: the hamburger button toggles the collapsed nav
+      //    (shown below 1024px, where .nav is hidden by CSS).
+      var hamburger = host.querySelector('.hamburger');
+      var nav = host.querySelector('.nav');
+      if (hamburger && nav) {
+        hamburger.setAttribute('aria-expanded', 'false');
+
+        function setMenu(open) {
+          nav.classList.toggle('open', open);
+          hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        }
+
+        hamburger.addEventListener('click', function () {
+          setMenu(!nav.classList.contains('open'));
+        });
+
+        // close the menu after choosing a destination
+        nav.addEventListener('click', function (e) {
+          if (e.target.closest('a')) setMenu(false);
+        });
+
+        // close on Escape
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape') setMenu(false);
+        });
+      }
     })
     .catch(function (err) {
       // fetch failed (typical when opened directly via file://): the
