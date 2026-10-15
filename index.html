@@ -123,12 +123,20 @@
     position: relative;
     z-index: 1;
   }
+  .banner-link { display: block; }
   .banner-img {
     display: block;
     width: 100%;
+    max-width: 1120px;
+    margin: 0 auto;
     height: auto;
     border-radius: 14px;
     border: 1px solid var(--border);
+    transition: border-color 0.25s, transform 0.25s;
+  }
+  .banner-link:hover .banner-img {
+    border-color: var(--signal);
+    transform: translateY(-2px);
   }
 
   /* ---------- HERO ---------- */
@@ -794,7 +802,9 @@
 <!-- ANNOUNCEMENT BANNER -->
 <div class="banner-wrap">
   <div class="container">
-    <img class="banner-img" src="./src/images/ones-invitation.png" alt="OpenAN banner" />
+    <a class="banner-link" href="news/2026-10-10-ones-f2f-meeting-invitation.html" aria-label="Read the news: OpenAN Face-to-Face Meeting invitation">
+      <img class="banner-img" src="./src/images/ones-invitation.png" alt="OpenAN Face-to-Face Meeting invitation at ONE Summit" />
+    </a>
   </div>
 </div>
 
